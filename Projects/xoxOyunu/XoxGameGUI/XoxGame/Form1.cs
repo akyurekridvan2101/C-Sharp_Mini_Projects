@@ -101,7 +101,7 @@ namespace XoxGame
         // Declares the winner and ends the game
         private void DeclareWinnerAndEndGame()
         {
-            if (currentPlayer == 1)
+            if (currentPlayer == 2)
                 MessageBox.Show("Player 1 Wins!");
             else
                 MessageBox.Show("Player 2 Wins!");
