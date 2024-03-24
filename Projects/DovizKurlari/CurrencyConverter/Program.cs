@@ -21,8 +21,11 @@ namespace CurrencyConverter
 
             DovizKurlari();
 
+
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+
+
 
         }
 

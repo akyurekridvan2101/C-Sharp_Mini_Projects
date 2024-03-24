@@ -157,6 +157,14 @@
             panel12 = new Panel();
             label59 = new Label();
             panel13 = new Panel();
+            Sagdaki = new ComboBox();
+            Soldaki = new ComboBox();
+            label38 = new Label();
+            label37 = new Label();
+            Miktar = new TextBox();
+            panel14 = new Panel();
+            Sonuc = new Label();
+            DonusturButonu = new Button();
             ((System.ComponentModel.ISupportInitialize)ABD).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -182,6 +190,7 @@
             panel11.SuspendLayout();
             panel12.SuspendLayout();
             panel13.SuspendLayout();
+            panel14.SuspendLayout();
             SuspendLayout();
             // 
             // Adlar
@@ -990,11 +999,95 @@
             panel13.Size = new Size(866, 36);
             panel13.TabIndex = 118;
             // 
+            // Sagdaki
+            // 
+            Sagdaki.DropDownStyle = ComboBoxStyle.DropDownList;
+            Sagdaki.FormattingEnabled = true;
+            Sagdaki.Items.AddRange(new object[] { "Türk Lirası", "ABD Doları", "Euro", "İngiliz Sterlini", "İsviçre Frangı", "Japon Yeni", "Suudi Arabistan Riyali", "Norveç Kronu", "Danimarka Kronu", "Avustralya Doları", "Kanada Doları", "İsveç Kronu", "Ruble" });
+            Sagdaki.Location = new Point(587, 47);
+            Sagdaki.Name = "Sagdaki";
+            Sagdaki.Size = new Size(144, 28);
+            Sagdaki.TabIndex = 119;
+            // 
+            // Soldaki
+            // 
+            Soldaki.DropDownStyle = ComboBoxStyle.DropDownList;
+            Soldaki.FormattingEnabled = true;
+            Soldaki.Items.AddRange(new object[] { "Türk Lirası", "ABD Doları", "Euro", "İngiliz Sterlini", "İsviçre Frangı", "Japon Yeni", "Suudi Arabistan Riyali", "Norveç Kronu", "Danimarka Kronu", "Avustralya Doları", "Kanada Doları", "İsveç Kronu", "Ruble" });
+            Soldaki.Location = new Point(129, 47);
+            Soldaki.Name = "Soldaki";
+            Soldaki.Size = new Size(151, 28);
+            Soldaki.TabIndex = 120;
+            // 
+            // label38
+            // 
+            label38.AutoSize = true;
+            label38.Font = new Font("Segoe UI Semibold", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label38.Location = new Point(587, 13);
+            label38.Name = "label38";
+            label38.Size = new Size(97, 31);
+            label38.TabIndex = 121;
+            label38.Text = "Karşılığı";
+            // 
+            // label37
+            // 
+            label37.AutoSize = true;
+            label37.Font = new Font("Segoe UI Semibold", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label37.Location = new Point(129, 13);
+            label37.Name = "label37";
+            label37.Size = new Size(82, 31);
+            label37.TabIndex = 122;
+            label37.Text = "Miktar";
+            // 
+            // Miktar
+            // 
+            Miktar.Location = new Point(129, 81);
+            Miktar.Name = "Miktar";
+            Miktar.Size = new Size(151, 27);
+            Miktar.TabIndex = 123;
+            // 
+            // panel14
+            // 
+            panel14.Controls.Add(Sonuc);
+            panel14.Controls.Add(DonusturButonu);
+            panel14.Controls.Add(Sagdaki);
+            panel14.Controls.Add(Miktar);
+            panel14.Controls.Add(Soldaki);
+            panel14.Controls.Add(label37);
+            panel14.Controls.Add(label38);
+            panel14.Location = new Point(12, 556);
+            panel14.Name = "panel14";
+            panel14.Size = new Size(866, 142);
+            panel14.TabIndex = 125;
+            // 
+            // Sonuc
+            // 
+            Sonuc.AutoSize = true;
+            Sonuc.Font = new Font("Segoe UI", 13F);
+            Sonuc.Location = new Point(587, 81);
+            Sonuc.Name = "Sonuc";
+            Sonuc.Size = new Size(25, 30);
+            Sonuc.TabIndex = 126;
+            Sonuc.Text = "0";
+            // 
+            // DonusturButonu
+            // 
+            DonusturButonu.AutoSize = true;
+            DonusturButonu.Font = new Font("Segoe UI", 13F);
+            DonusturButonu.Image = (Image)resources.GetObject("DonusturButonu.Image");
+            DonusturButonu.Location = new Point(412, 47);
+            DonusturButonu.Name = "DonusturButonu";
+            DonusturButonu.Size = new Size(56, 50);
+            DonusturButonu.TabIndex = 125;
+            DonusturButonu.UseVisualStyleBackColor = true;
+            DonusturButonu.Click += Donustur_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(889, 559);
+            ClientSize = new Size(889, 697);
+            Controls.Add(panel14);
             Controls.Add(panel13);
             Controls.Add(panel12);
             Controls.Add(panel11);
@@ -1012,6 +1105,7 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Döviz Dönüştürücü";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)ABD).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -1050,11 +1144,11 @@
             panel12.PerformLayout();
             panel13.ResumeLayout(false);
             panel13.PerformLayout();
+            panel14.ResumeLayout(false);
+            panel14.PerformLayout();
             ResumeLayout(false);
 
-
-
-            DovizBilgileriniYaz();// DovizBilgileriniYaz fonksiyonunu çağırıyoruz.
+            DovizBilgileriniYaz();
         }
 
         #endregion
@@ -1137,5 +1231,13 @@
         private Label label58;
         private Label label60;
         private Label label59;
+        private ComboBox Sagdaki;
+        private ComboBox Soldaki;
+        private Label label38;
+        private Label label37;
+        private TextBox Miktar;
+        private Panel panel14;
+        private Button DonusturButonu;
+        private Label Sonuc;
     }
 }
