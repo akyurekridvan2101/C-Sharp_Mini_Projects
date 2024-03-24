@@ -3,6 +3,8 @@ namespace CurrencyConverter
     public partial class Form1 : Form
     {
 
+
+
         public Form1()
         {
             InitializeComponent();
@@ -33,6 +35,7 @@ namespace CurrencyConverter
                 "Ruble"
             };
 
+
             // Döviz kurlarý, CurrencyConverter.Program'dan alýnýr ve uygun formata dönüþtürülür
             double[] kurlar =
             {
@@ -51,6 +54,8 @@ namespace CurrencyConverter
                 Convert.ToDouble(Program.dovizBilgileri[11, 0].Replace(".", ","))
             };
 
+            
+
             // Seçilen dövizlerin kurlarýnýn olduðu bir dizi döndürülüyor
             return new double[] { kurlar[Array.IndexOf(dovizler, Soldaki.Text)], kurlar[Array.IndexOf(dovizler, Sagdaki.Text)] };
 
@@ -59,7 +64,7 @@ namespace CurrencyConverter
         // Dönüþtür butonuna týklandýðýnda gerçekleþecek iþlemler
         private void Donustur_Click(object sender, EventArgs e)
         {
-            
+
             if (Soldaki.Text == "" || Sagdaki.Text == "")
             {
                 MessageBox.Show("Lütfen iki para birimini de seçiniz.");// Eðer herhangi bir para birimi seçilmediyse uyarý göster
@@ -92,5 +97,9 @@ namespace CurrencyConverter
 
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
