@@ -4,198 +4,198 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 
-namespace TelefonRehberi
+namespace PhoneBook
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // JSON dosya adı ve yolu
-            string jsonDosyaYolu = "data.json";
+            // JSON file name and path
+            string jsonFilePath = "data.json";
 
-            // JSON dosyasındaki veriyi oku veya oluştur
-            TelefonRehberi telefonRehberi = JsonDosyasiniOkuVeyaOlustur(jsonDosyaYolu);
+            // Read or create data from JSON file
+            PhoneBook phoneBook = ReadOrCreateJsonFile(jsonFilePath);
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Telefon Rehberi Menüsü");
+                Console.WriteLine("Phone Book Menu");
                 Console.WriteLine("-----------------------");
-                Console.WriteLine("1. Kişi Ekle");
-                Console.WriteLine("2. Kişi Güncelle");
-                Console.WriteLine("3. Kişi Sil");
-                Console.WriteLine("4. Rehberi Göster");
-                Console.WriteLine("5. Çıkış");
-                Console.Write("Seçiminizi yapın (1-5): ");
+                Console.WriteLine("1. Add Person");
+                Console.WriteLine("2. Update Person");
+                Console.WriteLine("3. Delete Person");
+                Console.WriteLine("4. Show Phone Book");
+                Console.WriteLine("5. Exit");
+                Console.Write("Enter your choice (1-5): ");
 
-                if (int.TryParse(Console.ReadLine(), out int secim))
+                if (int.TryParse(Console.ReadLine(), out int choice))
                 {
-                    switch (secim)
+                    switch (choice)
                     {
                         case 1:
-                            KisiEkle(telefonRehberi);
+                            AddPerson(phoneBook);
                             break;
                         case 2:
-                            KisiGuncelle(telefonRehberi);
+                            UpdatePerson(phoneBook);
                             break;
                         case 3:
-                            KisiSil(telefonRehberi);
+                            DeletePerson(phoneBook);
                             break;
                         case 4:
-                            RehberiGoster(telefonRehberi);
+                            ShowPhoneBook(phoneBook);
                             break;
                         case 5:
-                            // Çıkış
-                            JsonDosyasinaYaz(telefonRehberi, jsonDosyaYolu);
-                            Console.WriteLine("Programdan çıkılıyor.");
+                            // Exit
+                            WriteToJsonFile(phoneBook, jsonFilePath);
+                            Console.WriteLine("Exiting the program.");
                             return;
                         default:
-                            Console.WriteLine("Geçersiz seçim. Lütfen tekrar deneyin.");
+                            Console.WriteLine("Invalid choice. Please try again.");
                             break;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Geçersiz giriş. Lütfen bir sayı girin.");
+                    Console.WriteLine("Invalid input. Please enter a number.");
                 }
 
-                Console.WriteLine("Devam etmek için bir tuşa basın...");
+                Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }
         }
 
-        // Kişi ekleme işlemini gerçekleştiren fonksiyon
-        static void KisiEkle(TelefonRehberi telefonRehberi)
+        // Function to add a person
+        static void AddPerson(PhoneBook phoneBook)
         {
             Console.Clear();
-            Console.WriteLine("Kişi Ekleme Menüsü");
+            Console.WriteLine("Add Person Menu");
             Console.WriteLine("----------------------");
 
-            Console.Write("Adı Girin: ");
-            string ad = Console.ReadLine();
+            Console.Write("Enter Name: ");
+            string name = Console.ReadLine();
 
-            Console.Write("Soyadı Girin: ");
-            string soyad = Console.ReadLine();
+            Console.Write("Enter Surname: ");
+            string surname = Console.ReadLine();
 
-            Console.Write("Telefon Numarası Girin: ");
-            string telefon = Console.ReadLine();
+            Console.Write("Enter Phone Number: ");
+            string phoneNumber = Console.ReadLine();
 
-            // Yeni kişi nesnesi oluşturup rehbere ekleniyor
-            Kisi yeniKisi = new Kisi
+            // Create a new person object and add it to the phone book
+            Person newPerson = new Person
             {
-                Ad = ad,
-                Soyad = soyad,
-                Telefon = telefon
+                Name = name,
+                Surname = surname,
+                PhoneNumber = phoneNumber
             };
 
-            telefonRehberi.Kisiler.Add(yeniKisi);
-            Console.WriteLine("Yeni kişi telefon rehberine eklendi.");
+            phoneBook.Persons.Add(newPerson);
+            Console.WriteLine("New person added to the phone book.");
         }
 
-        // Kişi güncelleme işlemini gerçekleştiren fonksiyon
-        static void KisiGuncelle(TelefonRehberi telefonRehberi)
+        // Function to update a person
+        static void UpdatePerson(PhoneBook phoneBook)
         {
             Console.Clear();
-            Console.WriteLine("Kişi Güncelleme Menüsü");
+            Console.WriteLine("Update Person Menu");
             Console.WriteLine("----------------------");
 
-            Console.Write("Güncellenecek Kişinin Adını Girin: ");
-            string ad = Console.ReadLine();
+            Console.Write("Enter the Name of the Person to Update: ");
+            string name = Console.ReadLine();
 
-            // Güncellenecek kişi bulunuyor
-            Kisi guncellenecekKisi = telefonRehberi.Kisiler.FirstOrDefault(k => k.Ad == ad);
+            // Find the person to be updated
+            Person personToUpdate = phoneBook.Persons.FirstOrDefault(p => p.Name == name);
 
-            if (guncellenecekKisi != null)
+            if (personToUpdate != null)
             {
-                Console.Write("Yeni Soyadı Girin: ");
-                guncellenecekKisi.Soyad = Console.ReadLine();
+                Console.Write("Enter New Surname: ");
+                personToUpdate.Surname = Console.ReadLine();
 
-                Console.Write("Yeni Telefon Numarası Girin: ");
-                guncellenecekKisi.Telefon = Console.ReadLine();
+                Console.Write("Enter New Phone Number: ");
+                personToUpdate.PhoneNumber = Console.ReadLine();
 
-                Console.WriteLine("Kişi güncellendi.");
+                Console.WriteLine("Person updated.");
             }
             else
             {
-                Console.WriteLine("Kişi bulunamadı.");
+                Console.WriteLine("Person not found.");
             }
         }
 
-        // Kişi silme işlemini gerçekleştiren fonksiyon
-        static void KisiSil(TelefonRehberi telefonRehberi)
+        // Function to delete a person
+        static void DeletePerson(PhoneBook phoneBook)
         {
             Console.Clear();
-            Console.WriteLine("Kişi Silme Menüsü");
+            Console.WriteLine("Delete Person Menu");
             Console.WriteLine("----------------------");
 
-            Console.Write("Silinecek Kişinin Adını Girin: ");
-            string ad = Console.ReadLine();
+            Console.Write("Enter the Name of the Person to Delete: ");
+            string name = Console.ReadLine();
 
-            // Silinecek kişi bulunuyor
-            Kisi silinecekKisi = telefonRehberi.Kisiler.FirstOrDefault(k => k.Ad == ad);
+            // Find the person to be deleted
+            Person personToDelete = phoneBook.Persons.FirstOrDefault(p => p.Name == name);
 
-            if (silinecekKisi != null)
+            if (personToDelete != null)
             {
-                // Kişi listeden siliniyor
-                telefonRehberi.Kisiler.Remove(silinecekKisi);
-                Console.WriteLine("Kişi silindi.");
+                // Remove the person from the list
+                phoneBook.Persons.Remove(personToDelete);
+                Console.WriteLine("Person deleted.");
             }
             else
             {
-                Console.WriteLine("Kişi bulunamadı.");
+                Console.WriteLine("Person not found.");
             }
         }
 
-        // Rehberi gösterme işlemini gerçekleştiren fonksiyon
-        static void RehberiGoster(TelefonRehberi telefonRehberi)
+        // Function to show the phone book
+        static void ShowPhoneBook(PhoneBook phoneBook)
         {
             Console.Clear();
-            Console.WriteLine("Telefon Rehberi");
+            Console.WriteLine("Phone Book");
             Console.WriteLine("-----------------");
 
-            // Rehberdeki her kişi sırasıyla ekrana yazdırılıyor
-            foreach (var kisi in telefonRehberi.Kisiler)
+            // Print each person in the phone book
+            foreach (var person in phoneBook.Persons)
             {
-                Console.WriteLine($"Ad: {kisi.Ad}, Soyad: {kisi.Soyad}, Telefon: {kisi.Telefon}");
+                Console.WriteLine($"Name: {person.Name}, Surname: {person.Surname}, Phone Number: {person.PhoneNumber}");
             }
         }
 
-        // JSON dosyasını okuma veya oluşturma işlemini gerçekleştiren fonksiyon
-        static TelefonRehberi JsonDosyasiniOkuVeyaOlustur(string jsonDosyaYolu)
+        // Function to read or create data from JSON file
+        static PhoneBook ReadOrCreateJsonFile(string jsonFilePath)
         {
-            if (File.Exists(jsonDosyaYolu))
+            if (File.Exists(jsonFilePath))
             {
-                // JSON dosyasındaki veriyi oku
-                string jsonVerisi = File.ReadAllText(jsonDosyaYolu);
-                return JsonSerializer.Deserialize<TelefonRehberi>(jsonVerisi);
+                // Read data from JSON file
+                string jsonData = File.ReadAllText(jsonFilePath);
+                return JsonSerializer.Deserialize<PhoneBook>(jsonData);
             }
             else
             {
-                // JSON dosyası yoksa yeni bir telefon rehberi oluştur
-                return new TelefonRehberi { Kisiler = new List<Kisi>() };
+                // Create a new phone book if JSON file doesn't exist
+                return new PhoneBook { Persons = new List<Person>() };
             }
         }
 
-        // Telefon rehberini JSON formatına çevirip dosyaya yazan fonksiyon
-        static void JsonDosyasinaYaz(TelefonRehberi telefonRehberi, string jsonDosyaYolu)
+        // Function to convert phone book to JSON format and write to file
+        static void WriteToJsonFile(PhoneBook phoneBook, string jsonFilePath)
         {
-            // Telefon rehberini JSON formatına çevir ve dosyaya yaz
-            string jsonVerisi = JsonSerializer.Serialize(telefonRehberi);
-            File.WriteAllText(jsonDosyaYolu, jsonVerisi);
+            // Convert phone book to JSON format and write to file
+            string jsonData = JsonSerializer.Serialize(phoneBook);
+            File.WriteAllText(jsonFilePath, jsonData);
         }
     }
 
-    // Kişi sınıfı
-    class Kisi
+    // Person class
+    class Person
     {
-        public string Ad { get; set; }
-        public string Soyad { get; set; }
-        public string Telefon { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string PhoneNumber { get; set; }
     }
 
-    // TelefonRehberi sınıfı
-    class TelefonRehberi
+    // PhoneBook class
+    class PhoneBook
     {
-        public List<Kisi> Kisiler { get; set; }
+        public List<Person> Persons { get; set; }
     }
 }

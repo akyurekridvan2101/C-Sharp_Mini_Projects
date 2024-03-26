@@ -1,7 +1,7 @@
-# C# Mini Projeler Reposu
+# C# Mini Projects Repository
 
-Bu depo, C# programlama dilinde yazılmış küçük çaplı projeleri içermektedir. Her bir proje, temel C# konseptlerini anlamak ve pratik yapmak için tasarlanmıştır.
+This repository contains small-scale projects written in the C# programming language. Each project is designed to help understand and practice fundamental C# concepts.
 
-## Nasıl Kullanolır?
+## How to Use?
 
-Her bir proje kendi dosyasına sahiptir. Proje dosyalarını inceleyerek, C# kodunu anlamak ve geliştirmek için başlayabilirsiniz.
+Each project has its own file. You can start by examining the project files to understand and enhance the C# code.

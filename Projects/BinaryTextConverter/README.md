@@ -1,51 +1,47 @@
-**Binary Converter Uygulaması**
+**Binary Converter Application**
 
-Bu C# programı, kullanıcıdan alınan metin girişini binary formata çevirerek ekrana yazdıran basit bir uygulamadır.
+This C# program is a simple application that converts the text input provided by the user into binary format and prints it to the console.
 
-**Neden 2'nin Üsleri Kullanıldı**
+**Why Powers of 2 are Used**
 
-2'nin üsleri, matematikte ve bilgisayar biliminde sıkça kullanılan bir kavramdır. Bu kavram, temelde 2'nin bir kuvveti olarak ifade edilen sayılardır. 2'nin üsleri, bir sayının kendisiyle kaç kez çarpıldığını ifade eder. Genel olarak, 2 üzeri n (2^n), 2'yi n kez kendisiyle çarptığımız anlamına gelir.
+Powers of 2 are a commonly used concept in mathematics and computer science. This concept essentially refers to numbers expressed as powers of 2. Powers of 2 represent how many times a number is multiplied by itself. Generally, 2 raised to the power of n (2^n) means 2 multiplied by itself n times.
 
-Örneğin:
+For example:
 
-2 üzeri 0 (2^0) = 1
-2 üzeri 1 (2^1) = 2
-2 üzeri 2 (2^2) = 2 * 2 = 4
-2 üzeri 3 (2^3) = 2 * 2 * 2 = 8
-ve böyle devam eder.
-Bu kavram, bilgisayar biliminde özellikle binary (ikili) sistemde sıkça kullanılır çünkü bilgisayarlar genellikle ikili (binary) sayı sistemini kullanırlar. Her bir bit, 2'nin bir kuvveti olarak düşünülebilir. Örneğin, 8-bitlik bir binary sayı, 2^7'den 2^0'a kadar olan 8 farklı 2'nin üslerini kullanarak oluşturulabilir.
+2 raised to the power of 0 (2^0) = 1
+2 raised to the power of 1 (2^1) = 2
+2 raised to the power of 2 (2^2) = 2 * 2 = 4
+2 raised to the power of 3 (2^3) = 2 * 2 * 2 = 8
+and so on.
+This concept is frequently used in computer science, especially in the binary system, because computers typically use the binary number system. Each bit can be thought of as a power of 2. For instance, an 8-bit binary number can be constructed using 8 different powers of 2 ranging from 2^7 to 2^0.
 
-Fonksiyon içinde 2'nin üsleri, Math.Pow(2, i) ifadesiyle kullanılmıştır. Bu ifade, 2'nin i kadar üssünü hesaplar. Fonksiyon, bu üsleri kullanarak karakterin ASCII değerini binary formata çevirir.
+In the function, powers of 2 are utilized with the expression Math.Pow(2, i), which calculates 2 raised to the power of i. Using these powers, the function converts the ASCII value of a character into binary format.
 
+**How to Use**
 
+1. Launch the program.
+2. You will be prompted to enter text input. Enter some text and press Enter.
+3. The program will convert each character's ASCII value into binary format and print it to the console.
 
+**Note:** It should be noted that C# allocates 2 bytes (16 bits) for each character, unlike many other languages, which allocate 1 byte. I have coded the program considering this fact.
 
-
-
-**Nasıl Kullanılır?**
-
-1. Programı başlatın.
-2. Kullanıcıdan metin girişi istenecektir. Bir metin girin ve Enter tuşuna basın.
-3. Program, her bir karakterin ASCII değerini alarak bunları binary formata çevirip ekrana yazdıracaktır.
-
-**Not ⇒** Dikkat edilmesi gerekn konu C# diğer çoğu dil için bir karaktere 1 byte ayırmaz her karakter için 2 byte yani 16 bit ayırır.Bu durumu da göz önünde bulundurarak kodladım.
-
-**Örnek**
+**Example**
 
 ```bash
-Metin girin: Hello
+Enter text: Hello
+
 0000000001001000
 0000000001100101
 0000000001101100
 0000000001101100
 0000000001101111
+
 ```
 
-Yukarıdaki örnekte, "Hello" metni girildiğinde, her karakterin ASCII değeri alınarak binary formata çevrilmiştir.
+In the example above, when the text "Hello" is entered, each character's ASCII value is converted into binary format.
 
-**Notlar**
+**Notes**
 
-- Eğer boş bir metin girilirse, "Metin girilmediği için çevrilemedi..." şeklinde bir hata mesajı alırsınız.
-- Her bir karakterin binary temsilini oluşturan **`CharToBits`** metodunu kullanarak bu işlem gerçekleştirilir.
-- ASCII değerine göre her bir karakterin binary temsilini oluşturan mantık, programın içerisinde detaylı olarak açıklanmıştır.
-- Program, metindeki her bir karakterin binary temsilini ters sırayla ekrana yazdırır.
+- If an empty text is entered, you will receive an error message saying "Text was not entered, so it couldn't be converted...".
+- The logic for creating the binary representation of each character based on its ASCII value is explained in detail within the program.
+- The program prints the binary representation of each character in reverse order.

@@ -1,53 +1,55 @@
-# **Telefon Rehberi Uygulaması**
+https://github.com/akyurekridvan2101/CSharpMiniProjects/assets/98421577/1b1dcd99-63a6-4be5-97f7-aed1e2140a13
 
-Bu basit konsol uygulaması, bir telefon rehberi işlevi görmektedir. Kullanıcı, rehberine kişi ekleyebilir, kişi güncelleyebilir, kişi silebilir ve rehberdeki tüm kişileri görebilir.
+# **Phone Book Application**
 
-## **Kullanım**
+This is a simple console-based phone book application implemented in C#. Users can add, update, delete, and display contacts in the phone book.
 
-### **1. Başlangıç**
+## **Usage**
 
-- **JSON Dosyası:** Uygulama, verileri depolamak için **`data.json`** adında bir JSON dosyası kullanmaktadır. Bu dosya, uygulamanın her başlatıldığında mevcut rehber verilerini okumasına ve yazmasına olanak tanır.
+### **1. Getting Started**
 
-### **2. Menü**
+- **JSON File:** The application uses a JSON file named **`data.json`** to store data. This file allows the application to read and write existing phone book data every time it starts.
 
-Uygulama, kullanıcıya aşağıdaki seçenekleri içeren bir menü sunar:
+### **2. Menu**
 
-- **1. Kişi Ekle:** Yeni bir kişi eklemek için bu seçeneği kullanın.
-- **2. Kişi Güncelle:** Var olan bir kişiyi güncellemek için bu seçeneği kullanın.
-- **3. Kişi Sil:** Var olan bir kişiyi silmek için bu seçeneği kullanın.
-- **4. Rehberi Göster:** Rehberdeki tüm kişileri listeleyin.
-- **5. Çıkış:** Uygulamadan çıkış yapın ve mevcut rehber verilerini JSON dosyasına kaydedin.
+The application presents the user with a menu containing the following options:
 
-### **3. İşlemler**
+- **1. Add Person:** Use this option to add a new person.
+- **2. Update Person:** Use this option to update an existing person.
+- **3. Delete Person:** Use this option to delete an existing person.
+- **4. Show Phone Book:** List all persons in the phone book.
+- **5. Exit:** Exit the application and save current phone book data to the JSON file.
 
-### 3.1. Kişi Ekleme
+### **3. Operations**
 
-- **Ad, Soyad ve Telefon Bilgisi:** Yeni bir kişi eklerken, kullanıcıdan ad, soyad ve telefon numarası bilgilerini girmesi istenir.
-- **Rehber Güncellenir:** Yeni kişi, telefon rehberine eklenir ve ekrana "Yeni kişi telefon rehberine eklendi." mesajı yazdırılır.
+### 3.1. Adding a Person
 
-### 3.2. Kişi Güncelleme
+- **Name, Surname, and Phone Number:** When adding a new person, the user is prompted to enter the name, surname, and phone number.
+- **Phone Book Update:** The new person is added to the phone book, and a message "New person added to the phone book." is displayed.
 
-- **Güncellenecek Kişi Seçimi:** Güncellenmesi istenen kişinin adını girmesi istenir.
-- **Yeni Bilgiler:** Yeni soyad ve telefon numarası bilgilerini girmesi istenir.
-- **Rehber Güncellenir:** Kişi güncellenir ve ekrana "Kişi güncellendi." mesajı yazdırılır.
+### 3.2. Updating a Person
 
-### 3.3. Kişi Silme
+- **Selecting Person to Update:** The user is asked to enter the name of the person to update.
+- **Entering New Information:** The user is prompted to enter the new surname and phone number.
+- **Phone Book Update:** The person is updated, and a message "Person updated." is displayed.
 
-- **Silinecek Kişi Seçimi:** Silinmesi istenen kişinin adını girmesi istenir.
-- **Rehber Güncellenir:** Kişi rehberden silinir ve ekrana "Kişi silindi." mesajı yazdırılır.
+### 3.3. Deleting a Person
 
-### 3.4. Rehberi Gösterme
+- **Selecting Person to Delete:** The user is asked to enter the name of the person to delete.
+- **Phone Book Update:** The person is removed from the phone book, and a message "Person deleted." is displayed.
 
-- **Alfabetik Sırayla Liste:** Rehberdeki tüm kişiler alfabetik sıraya göre ekrana yazdırılır.
+### 3.4. Showing the Phone Book
 
-### **4. Çıkış**
+- **Listed in Alphabetical Order:** All persons in the phone book are displayed in alphabetical order.
 
-Uygulamadan çıkarken, mevcut rehber verileri **`data.json`** dosyasına kaydedilir.
+### **4. Exiting**
 
-## **Kod Yapısı**
+When exiting the application, the current phone book data is saved to the **`data.json`** file.
 
-Uygulama, C# programlama dilinde yazılmıştır ve aşağıdaki temel sınıfları içerir:
+## **Code Structure**
 
-- **Program:** Kullanıcı arayüzü ve temel işlevselliği içerir.
-- **Kisi:** Bir kişiyi temsil eden sınıf.
-- **TelefonRehberi:** Bir liste içindeki kişileri yöneten sınıf.
+The application is written in C# programming language and includes the following main classes:
+
+- **Program:** Contains the user interface and basic functionality.
+- **Person:** Represents a person.
+- **PhoneBook:** Manages persons in a list.

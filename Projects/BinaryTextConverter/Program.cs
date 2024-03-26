@@ -4,52 +4,52 @@ class Program
 {
     static void Main()
     {
-        // Kullanıcıdan metin girişi alınır
-        Console.Write("Metin girin: ");
-        string metin = Console.ReadLine() ?? "null değer";
+        // Prompt the user to enter text
+        Console.Write("Enter text: ");
+        string text = Console.ReadLine() ?? "null value";
 
-        // Metin, PrintBytes metoduna gönderilir
-        PrintBytes(metin);
+        // Send the text to the PrintBytes method
+        PrintBytes(text);
     }
 
-    // Girilen metni binary formatta ekrana yazdıran metod
-    static void PrintBytes(string metin)
+    // Method to print the text in binary format
+    static void PrintBytes(string text)
     {
-        if (String.IsNullOrEmpty(metin))
+        if (String.IsNullOrEmpty(text))
         {
-            // Eğer metin boş veya null ise hata mesajı verilir
-            Console.WriteLine("Metin girilmediği için çevrilemedi...");
+            // Display an error message if the text is empty or null
+            Console.WriteLine("Text was not entered, so it couldn't be converted...");
         }
         else
         {
-            foreach (char karakter in metin.ToCharArray())
+            foreach (char character in text.ToCharArray())
             {
-                // Karakteri binary formata çevirip ekrana yazdıran metod çağrılır
-                char[] bits = CharToBits(karakter).ToCharArray();
+                // Call the method to convert the character to binary format and print it to the console
+                char[] bits = CharToBits(character).ToCharArray();
                 Array.Reverse(bits);
                 Console.WriteLine(bits);
             }
-            Console.WriteLine(); // Bir satır atla
+            Console.WriteLine(); // Add a line break
         }
     }
 
-    // Karakteri binary formata çeviren metod
-    static string CharToBits(char siradakiKarakter)
+    // Method to convert the character to binary format
+    static string CharToBits(char nextCharacter)
     {
-        int asciiDegeri = siradakiKarakter;
+        int asciiValue = nextCharacter;
 
-        // Karakterin binary temsili için 16-bitlik bir dizi oluşturulur
+        // Create a 16-bit array to represent the binary of the character
         char[] bits = "0000000000000000".ToCharArray();
 
-        if (asciiDegeri == 0)
+        if (asciiValue == 0)
             return "0000000000000000";
 
-        int max = 0, sayiKontrol = 0;
+        int max = 0, numberCheck = 0;
 
-        // Karakterin binary temsilini oluşturan döngü
+        // Loop to construct the binary representation of the character
         for (int i = 0; i <= 15; i++)
         {
-            if (Math.Pow(2, i) > asciiDegeri)
+            if (Math.Pow(2, i) > asciiValue)
             {
                 max = i - 1;
                 bits[max] = '1';
@@ -57,15 +57,15 @@ class Program
             }
         }
 
-        sayiKontrol += (int)Math.Pow(2, max);
+        numberCheck += (int)Math.Pow(2, max);
 
-        // Karakterin binary temsilini devam ettiren döngü
+        // Loop to continue constructing the binary representation of the character
         for (int i = max - 1; i >= 0; i--)
         {
-            if (sayiKontrol + (int)Math.Pow(2, i) <= asciiDegeri)
+            if (numberCheck + (int)Math.Pow(2, i) <= asciiValue)
             {
                 bits[i] = '1';
-                sayiKontrol += (int)Math.Pow(2, i);
+                numberCheck += (int)Math.Pow(2, i);
             }
         }
 

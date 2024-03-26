@@ -6,61 +6,61 @@ namespace ConsoleApp1
     {
         static void Main()
         {
-            // Kullanıcının gireceği sırayı tutan değişken
-            int sira = 0;
+            // Variable to hold the user-entered position
+            int position = 0;
 
             while (true)
             {
                 try
                 {
-                    // Kullanıcıdan sıra bilgisini al
-                    Console.Write("Sıra : ");
-                    sira = Convert.ToInt32(Console.ReadLine());
+                    // Get the position from the user
+                    Console.Write("Position: ");
+                    position = Convert.ToInt32(Console.ReadLine());
 
-                    // Girilen sıra 1'den küçükse hata mesajı göster ve tekrar iste
-                    if (sira < 1)
-                        Console.WriteLine("Lütfen 1'den büyük bir sayı giriniz.");
+                    // Display an error message and ask for input again if the entered position is less than 1
+                    if (position < 1)
+                        Console.WriteLine("Please enter a number greater than 1.");
                     else
                         break;
 
                 }
                 catch (Exception ex)
                 {
-                    // Hata durumunda temizle ve geçerli bir sayı girmeleri için kullanıcıyı uyar
+                    // Clear the console and prompt the user to enter a valid number in case of an error
                     Console.Clear();
-                    Console.WriteLine("Lütfen geçerli bir sayı giriniz => " + ex.Message);
+                    Console.WriteLine("Please enter a valid number => " + ex.Message);
                 }
             }
 
-            // Girilen sıra 1 veya 2 ise 1'i ekrana yazdır, değilse Fibonacci hesapla
-            if (sira == 1 || sira == 2)
+            // If the entered position is 1 or 2, print 1, otherwise calculate Fibonacci
+            if (position == 1 || position == 2)
                 Console.WriteLine("1");
             else
             {
-                // Temizle ve Fibonacci hesaplamak için ilgili fonksiyonu çağır
+                // Clear the console and call the relevant function to calculate Fibonacci
                 Console.Clear();
-                Console.WriteLine(Fibonacci(sira));
+                Console.WriteLine(Fibonacci(position));
             }
 
-            // Programı sonlandırmadan önce kullanıcıdan bir tuş beklet
+            // Wait for a key press before terminating the program
             Console.ReadKey();
         }
 
-        // n. Fibonacci sayısını hesaplar
-        static int Fibonacci(int sira)
+        // Calculates the nth Fibonacci number
+        static int Fibonacci(int position)
         {
-            // Fibonacci hesaplama için kullanılacak değişkenler
+            // Variables to be used for Fibonacci calculation
             int previous = 0, current = 1, next = 0;
 
-            // Fibonacci dizisini hesapla
-            for (int i = 0; i < sira - 1; i++)
+            // Calculate the Fibonacci series
+            for (int i = 0; i < position - 1; i++)
             {
                 next = previous + current;
                 previous = current;
                 current = next;
             }
 
-            // n. Fibonacci sayısını döndür
+            // Return the nth Fibonacci number
             return current;
         }
     }
